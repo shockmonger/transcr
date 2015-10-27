@@ -1,4 +1,5 @@
 import csv
+import pandas
 
 with open ('/Users/tejas/Documents/CurrentProjects/transcr/test.Pitch', 'r') as file:
     f=file.readlines()
@@ -15,6 +16,10 @@ for i in range(len(freqlist)):
 for i in range(len(data)):
 	data[i]=data[i].strip()
 
-with open("output.csv", "wb") as fi:
-    writer = csv.writer(fi, delimiter=',',quoting=csv.QUOTE_ALL)
-    writer.writerows(data)
+pd = pandas.DataFrame(data)
+pd.to_csv("output.csv")
+
+
+# with open("output.csv", "wb") as fi:
+#     writer = csv.writer(fi, delimiter=',')
+#     writer.writerows(data[i])
