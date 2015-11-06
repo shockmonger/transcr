@@ -1,0 +1,59 @@
+import csv
+import pandas
+
+with open ("/Users/tejas/Documents/CurrentProjects/transcr/output.csv", 'r') as file:
+    f=file.readlines()
+
+freqlist=[]
+for line in f:
+	if 'frequency' in line:
+		freqlist.append(line)
+
+data=[]
+for i in range(len(freqlist)):
+	data.append(freqlist[i][28:])
+
+for i in range(len(data)):
+	data[i]=data[i].strip()
+
+
+ttratios = {'S':1, 'r1':1.053, 'r2':1.066, 'R1':1.111, 'R2':1.125, 'g1':1.185, 'g2':1.20, 'G1':1.250, 'G2':1.265, 'm1':1.333, 'm2':1.350, 'M1':1.406, 'M2':1.423, 'P':1.50, 'd1':1.580, 'd2':1.60, 'D1':1.666, 'D2':1.687, 'n1':1.777, 'n2':1.860, 'N1':1.875, 'N2':1.898,]}
+
+twratios = {'S':1, 'r':, 'R':, 'g':, 'G':, 'm':, 'M':, 'P':, 'd':, 'D':, 'n':, 'N':, }
+
+
+
+#Find 
+
+
+algorithm peak1 // one peak detection algorithms that uses peak function S1 
+
+input T = x1, x2, …, xN, N // input time-series of N points 
+input k // window size around the peak 
+input h // typically 1 <= h <= 3 
+output O // set of peaks detected in T 
+
+begin 
+O = empty set // initially empty 
+
+    for (i = 1; i < n; i++) do
+        // compute peak function value for each of the N points in T 
+        a[i] = S1(k,i,xi,T); 
+    end for 
+
+    Compute the mean m' and standard deviation s' of all positive values in array a; 
+
+    for (i = 1; i < n; i++) do // remove local peaks which are “small” in global context 
+        if (a[i] > 0 && (a[i] – m') >( h * s')) then O = O + {xi}; 
+        end if 
+    end for 
+
+    Order peaks in O in terms of increasing index in T 
+
+    // retain only one peak out of any set of peaks within distance k of each other 
+
+    for every adjacent pair of peaks xi and xj in O do 
+        if |j – i| <= k then remove the smaller value of {xi, xj} from O 
+        end if 
+    end for 
+end
